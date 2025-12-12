@@ -1,0 +1,9 @@
+{
+  "name": "sankalp-premier-league-s2",
+  "version": "1.0.0",
+  "description": "Sankalp Premier League Season 2 - Auction Management System",
+  "scripts": {
+    "dev": "python -m http.server 8000 --directory public",
+    "build": "echo 'Build complete - deploy public folder'"
+  }
+}

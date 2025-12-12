@@ -1,0 +1,626 @@
+:root {
+  --primary-color: #1a1a2e;
+  --secondary-color: #16213e;
+  --accent-color: #0f3460;
+  --highlight-color: #e94560;
+  --success-color: #2ecc71;
+  --danger-color: #e74c3c;
+  --text-light: #ffffff;
+  --text-dark: #2c3e50;
+  --border-radius: 12px;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--text-light);
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tournament-select {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.tournament-select:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--highlight-color);
+}
+
+.tournament-select option {
+  background: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.app-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.season-badge {
+  background: var(--highlight-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Pages */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Teams Grid */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--highlight-color);
+}
+
+.team-logo {
+  width: 100%;
+  max-width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 auto 1rem;
+  display: block;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover .team-logo {
+  transform: scale(1.05);
+}
+
+.team-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--highlight-color);
+}
+
+.team-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.stat-label {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-weight: 700;
+  color: var(--highlight-color);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background: var(--highlight-color);
+  color: var(--text-light);
+}
+
+.btn-success {
+  background: var(--success-color);
+  color: var(--text-light);
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: var(--text-light);
+}
+
+.btn-secondary {
+  background: var(--accent-color);
+  color: var(--text-light);
+}
+
+.admin-btn {
+  background: var(--highlight-color);
+  color: var(--text-light);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--secondary-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-content h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--highlight-color);
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--highlight-color);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.form-control option {
+  background: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.button-group .btn {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Admin Section */
+.admin-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.admin-container h2 {
+  color: var(--highlight-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.auction-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.auction-controls {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.unsold-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.unsold-section h3 {
+  margin-bottom: 1rem;
+  color: var(--highlight-color);
+}
+
+.tournament-creation {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  border: 2px solid var(--highlight-color);
+}
+
+.tournament-creation h3 {
+  margin-bottom: 1rem;
+  color: var(--highlight-color);
+}
+
+.auction-status {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 600;
+}
+
+.auction-status.complete {
+  background: rgba(46, 204, 113, 0.2);
+  border: 2px solid var(--success-color);
+  color: var(--success-color);
+}
+
+.unsold-list {
+  margin-top: 1rem;
+  display: none;
+}
+
+.unsold-list.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.unsold-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--danger-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.unsold-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--highlight-color);
+  transform: translateX(5px);
+}
+
+.unsold-item-name {
+  font-weight: 700;
+  color: var(--highlight-color);
+  margin-bottom: 0.5rem;
+}
+
+.unsold-item-id {
+  opacity: 0.7;
+  font-size: 0.875rem;
+}
+
+/* Team Management */
+.team-management {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-management-list {
+  display: none;
+  margin-top: 1rem;
+}
+
+.team-management-list.active {
+  display: block;
+}
+
+/* Team Details */
+.team-details-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.team-header .team-logo {
+  max-width: 200px;
+  height: 200px;
+  margin: 0 auto 1rem;
+}
+
+.team-header h2 {
+  color: var(--highlight-color);
+  margin-bottom: 1rem;
+}
+
+.team-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.summary-label {
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--highlight-color);
+}
+
+.players-section h3 {
+  margin-bottom: 1rem;
+  color: var(--highlight-color);
+}
+
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.players-table th,
+.players-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.players-table th {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  color: var(--highlight-color);
+}
+
+.players-table tr:last-child td {
+  border-bottom: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  opacity: 0.7;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.25rem;
+  }
+
+  .app-logo {
+    height: 50px;
+  }
+
+  .team-logo {
+    max-width: 120px;
+    height: 120px;
+  }
+
+  .team-header .team-logo {
+    max-width: 150px;
+    height: 150px;
+  }
+
+  .teams-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group .btn {
+    width: 100%;
+  }
+
+  .players-table {
+    font-size: 0.875rem;
+  }
+
+  .players-table th,
+  .players-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .team-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    justify-content: center;
+  }
+
+  .logo-section {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .admin-btn {
+    width: 100%;
+  }
+
+  .players-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

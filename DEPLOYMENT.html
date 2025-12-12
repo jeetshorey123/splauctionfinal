@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankalp Premier League Season 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #1a1a2e; }
+        .step { 
+            background: #f4f4f4; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 5px;
+        }
+        code {
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .important {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏏 Sankalp Premier League Season 2 - Deployment Guide</h1>
+    
+    <div class="important">
+        <strong>⚠️ Important:</strong> Before deploying, you must configure Supabase. Follow SETUP_GUIDE.md first!
+    </div>
+
+    <div class="step">
+        <h2>Step 1: Configure Supabase</h2>
+        <p>Open <code>public/app.js</code> and update:</p>
+        <pre>
+const SUPABASE_URL = 'your-project-url';
+const SUPABASE_ANON_KEY = 'your-anon-key';
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 2: Test Locally</h2>
+        <p>Open <code>public/index.html</code> in your browser to test.</p>
+    </div>
+
+    <div class="step">
+        <h2>Step 3: Deploy to Vercel</h2>
+        <p><strong>Option A:</strong> Using Vercel CLI</p>
+        <pre>
+npm install -g vercel
+vercel
+        </pre>
+        
+        <p><strong>Option B:</strong> Using GitHub + Vercel</p>
+        <ol>
+            <li>Push code to GitHub</li>
+            <li>Go to vercel.com and import your repository</li>
+            <li>Set output directory to: <code>public</code></li>
+            <li>Deploy!</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2>Admin Credentials</h2>
+        <p>Username: <code>jeet</code></p>
+        <p>Password: <code>jeet</code></p>
+    </div>
+
+    <p><strong>For detailed instructions, see README.md and SETUP_GUIDE.md</strong></p>
+</body>
+</html>

@@ -1,0 +1,5 @@
+// Supabase Configuration
+const SUPABASE_CONFIG = {
+  url: 'https://pwmefeaoqwcjycbnvmgw.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3bWVmZWFvcXdjanljYm52bWd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzNTc2MjYsImV4cCI6MjA4MDkzMzYyNn0.zTGrX-rAXjcDoEDj6KEaiClrQq4DMK-YRWb_tx0IOmg'
+};

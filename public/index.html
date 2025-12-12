@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1a1a2e" />
+    <meta name="description" content="Sankalp Premier League Season 2 - Auction Management System" />
+    <title>Sankalp Premier League Season 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo-section">
+            <img src="spl-logo.png" alt="SPL Logo" class="app-logo">
+            <div class="title-section">
+              <h1>Sankalp Premier League</h1>
+              <span class="season-badge">Season 2</span>
+            </div>
+          </div>
+          <div class="header-controls">
+            <select id="tournamentSelect" class="tournament-select">
+              <option value="">Select Tournament</option>
+            </select>
+            <button id="adminBtn" class="admin-btn">Admin Login</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main id="mainContent">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+          <div class="teams-grid" id="teamsGrid">
+            <!-- Teams will be loaded dynamically -->
+          </div>
+        </div>
+
+        <!-- Team Details Page -->
+        <div id="teamDetailsPage" class="page">
+          <button id="backToHome" class="back-btn">← Back to Home</button>
+          <div id="teamDetails"></div>
+        </div>
+
+        <!-- Admin Page -->
+        <div id="adminPage" class="page">
+          <button id="backToHomeFromAdmin" class="back-btn">← Back to Home</button>
+          <div class="admin-container">
+            <h2>Admin Panel</h2>
+            <div id="adminContent" class="admin-content">
+              <!-- Tournament Creation -->
+              <div id="tournamentCreation" class="tournament-creation">
+                <h3>Create New Tournament</h3>
+                <div class="form-group">
+                  <label for="tournamentNameInput">Tournament Name</label>
+                  <input type="text" id="tournamentNameInput" class="form-control" placeholder="Enter tournament name">
+                </div>
+                <div class="button-group">
+                  <button id="createTournamentBtn" class="btn btn-primary">Create Tournament</button>
+                  <button id="deleteTournamentBtn" class="btn btn-danger" style="display: none;">Delete Current Tournament</button>
+                </div>
+              </div>
+
+              <!-- Auction Interface -->
+              <div id="auctionSection" class="auction-section" style="display: none;">
+                <div class="auction-controls">
+                  <div class="form-group">
+                    <label for="playerSelect">Select Player</label>
+                    <select id="playerSelect" class="form-control">
+                      <option value="">Choose a player...</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="teamSelect">Select Team</label>
+                    <select id="teamSelect" class="form-control">
+                      <option value="">Choose a team...</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="priceInput">Price</label>
+                    <input type="number" id="priceInput" class="form-control" min="0" placeholder="Enter price">
+                  </div>
+                  <div class="button-group">
+                    <button id="soldBtn" class="btn btn-success">Sold</button>
+                    <button id="unsoldBtn" class="btn btn-danger">Unsold</button>
+                  </div>
+                </div>
+                
+                <div class="unsold-section">
+                  <h3>Unsold Players</h3>
+                  <div class="button-group">
+                    <button id="showUnsoldBtn" class="btn btn-secondary">Show Unsold List</button>
+                    <button id="restartWithUnsoldBtn" class="btn btn-primary" style="display: none;">Restart Auction with Unsold Players</button>
+                    <button id="downloadExcelBtn" class="btn btn-success">Download Auction Excel</button>
+                  </div>
+                  <div id="unsoldList" class="unsold-list"></div>
+                  <div id="auctionStatus" class="auction-status"></div>
+                </div>
+
+                <!-- Team Management Section -->
+                <div class="team-management">
+                  <h3>Team Management</h3>
+                  <div class="button-group">
+                    <button id="showTeamManagementBtn" class="btn btn-info">View & Edit Teams</button>
+                  </div>
+                  <div id="teamManagementList" class="team-management-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Admin Login Modal -->
+      <div id="loginModal" class="modal">
+        <div class="modal-content">
+          <h2>Admin Login</h2>
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="form-control" required>
+            </div>
+            <div class="button-group">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="button" id="cancelLogin" class="btn btn-secondary">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="app-supabase.js"></script>
+  </body>
+</html>
