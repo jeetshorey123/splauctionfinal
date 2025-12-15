@@ -266,7 +266,7 @@ async function handlePlayerSold() {
       alert(`9th player sold to ${team.name}!\nRemaining purse: ₹${teamData[tid].purse_left.toLocaleString()}\nPlayers remaining: ${team.max_players - 9}`);
     }
     
-    alert('Player sold successfully!');
+    alert('Player sold and updated in Supabase successfully!');
     document.getElementById('playerSelect').value = '';
     document.getElementById('teamSelect').value = '';
     document.getElementById('priceInput').value = '';
@@ -372,7 +372,7 @@ async function createTournament() {
     
     nameInput.value = '';
     await loadTournamentSelect();
-    alert(`Tournament "${name}" created successfully! You can now start the auction.`);
+    alert(`Tournament "${name}" created and updated in Supabase successfully! You can now start the auction.`);
     await showAdminPage();
   } catch (error) {
     if (error.code === '23505') {
