@@ -57,8 +57,18 @@ document.addEventListener('DOMContentLoaded',()=>{
     TEAMS.forEach(tm=>{t[tm.id]={id:tm.id,name:tm.name,logo:tm.logo,purse_left:tm.purse,players_purchased:0}});
     localStorage.setItem(STORAGE_KEY_TEAMS,JSON.stringify(t));
   }
-  if(!localStorage.getItem(STORAGE_KEY_PLAYERS)){
+  // Always sync player list with ALL_PLAYERS array
+  const existingPlayers = localStorage.getItem(STORAGE_KEY_PLAYERS);
+  if(!existingPlayers){
     localStorage.setItem(STORAGE_KEY_PLAYERS,JSON.stringify(ALL_PLAYERS.map(p=>({...p,status:'available',team_id:null,price:0,tournament:null}))));
+  } else {
+    // Update to match ALL_PLAYERS while preserving auction data
+    const stored = JSON.parse(existingPlayers);
+    const updated = ALL_PLAYERS.map(p => {
+      const existing = stored.find(sp => sp.player_id === p.player_id);
+      return existing ? {...p, status: existing.status, team_id: existing.team_id, price: existing.price, tournament: existing.tournament} : {...p, status: 'available', team_id: null, price: 0, tournament: null};
+    });
+    localStorage.setItem(STORAGE_KEY_PLAYERS, JSON.stringify(updated));
   }
   teamData=JSON.parse(localStorage.getItem(STORAGE_KEY_TEAMS));
   loadTournamentSelect();
