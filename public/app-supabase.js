@@ -13,7 +13,7 @@ let teamData = {};
 
 const TEAMS = [
   { id: 1, name: 'Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 10 },
-  { id: 2, name: 'Fighters', logo: 'fighters.jpeg', purse: 100000, max_players: 10 },
+  { id: 2, name: 'Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 10 },
   { id: 3, name: 'Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 10 },
   { id: 4, name: 'Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 10 },
   { id: 5, name: 'Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 10 },

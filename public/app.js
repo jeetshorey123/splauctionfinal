@@ -8,7 +8,7 @@ let currentTournament = null;
 
 const TEAMS = [
   { id: 1, name: 'Sankalp Warriors', logo: 'warrior.jpg', purse: 100000 },
-  { id: 2, name: 'Sankalp Fighters', logo: 'fighters.jpeg', purse: 100000 },
+  { id: 2, name: 'Sankalp Challengers', logo: 'fighters.jpeg', purse: 100000 },
   { id: 3, name: 'Sankalp Valiant', logo: 'valiant.jpg', purse: 100000 },
   { id: 4, name: 'Sankalp Strikers', logo: 'strikers.jpeg', purse: 100000 },
   { id: 5, name: 'Sankalp Mavericks', logo: 'mavericks.jpg', purse: 100000 },
