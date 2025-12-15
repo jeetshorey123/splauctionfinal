@@ -188,9 +188,9 @@ async function showAdminPage() {
     const ts = document.getElementById('teamSelect');
     ps.innerHTML = '<option value="">Choose a player...</option>';
     
-    // Only show players that are truly available (not sold to any tournament)
+    // Only show players that are truly available (not sold to any tournament) and IDs 1-54
     const allPlayers = await getPlayers();
-    const availablePlayers = allPlayers.filter(p => p.status === 'available' && p.tournament_id === null);
+    const availablePlayers = allPlayers.filter(p => p.status === 'available' && p.tournament_id === null && p.id >= 1 && p.id <= 54);
     availablePlayers.forEach(p => {
       const o = document.createElement('option');
       o.value = p.id;
