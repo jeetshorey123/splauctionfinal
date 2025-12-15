@@ -1,70 +1,55 @@
-id,name
-1,Lakshank Furiya
-2,Kaushik yamber
-3,Krishang bhardwaj
-4,Aryan Singh(101)
-5,Ashish R Pandey
-6,Abhishek seth
-7,Mitesh Mistry
-8,Rupesh singh
-9,Adi rane
-10,Pratyush prakash kadam
-11,Jatin
-12,Nilesh Vishwakarma
-13,Harish Jetli
-14,Nikunj toshniwal
-15,Parth Doshi
-16,Mihir Makwana 
-17,Bharat miatry
-18,Kishore
-19,Aaryan mistry
-20,Naveen Porwal 
-21,Prateek Gond
-22,Hait Dama 
-23,Jay patel
-24,Monish Shastri
-25,Pramod Rane
-26,SUNIL BOHRA
-27,Viraj singh 
-28,Vimarsh
-29,Sidharth singh
-30,Tejas Suthar
-31,Vikas mishra
-32,Krishna
-33,Sadashiv devadiga 
-34,Rakesh Singh
-35,Shailesh Singh 
-36,Aryan Singh(602)
-37,jeet shorey
-38,Kush Dama 
-39,Veer dama
-40,Ajay seth
-41,Dinesh j suthar
-42,Raj  singh
-43,Vadant kabra
-44,Jeevan Gunjal 
-45,Deepak Yadav
-46,Deep Dama
-47,Kalash Porwal
-48,AARUSH GUPTA BADA
-49,Jimit 
-50,deepak dama
-51,manoj mishra
-52,Veer 
-53,Yuvraj Singh 
-54,Rishi Devadiga 
-55,Kailash Jain
-56,Arpit ashish pandey
-57,Rudhra Dev Jetli
-58,Meet Dama
-59,Sahil rastogi
-60,Rounik singh
-61,Anuj Doshi
-62,Vansh suryawanshi 
-63,Nikhil Waghela
-64,diinesh suthar
-65,vivek mehra
-66,jimmy mehta 
-67,jighnesh mehta 
-68,nilesh sharma 
-69,prakash kadam
+id,name,base price 
+1,Lakshank Furiya,3000
+2,Kaushik yamber,5000
+3,Krishang bhardwaj,2000
+4,Aryan Singh(101),10000
+5,Ashish R Pandey,10000
+6,Abhishek seth,10000
+7,Mitesh Mistry,5000
+8,Rupesh singh,5000
+9,Jatin,10000
+10,Nilesh Vishwakarma,3000
+11,Harish Jetli,10000
+12,Nikunj toshniwal,10000
+13,Parth Doshi,10000
+14,Mihir Makwana,5000
+15,Bharat mistry,2000
+16,Kishore,2000
+17,Aaryan mistry,3000
+18,Naveen Porwal,5000
+19,Prateek Gond,10000
+20,Hait Dama,5000
+21,Jay patel,2000
+22,Monish Shastri,10000
+23,Pramod Rane,3000
+24,SUNIL BOHRA,5000
+25,Viraj singh,10000
+26,aayan,2000
+27,Sidharth singh,10000
+28,Tejas Suthar,3000
+29,Vikas mishra,3000
+30,Kishan V,3000
+31,Sadashiv devadiga,3000
+32,Rakesh Singh,5000
+33,Shailesh Singh,3000
+34,Aryan Singh(602),10000
+35,jeet shorey,10000
+36,Kush Dama,5000
+37,Veer dama,5000
+38,Ajay seth,3000
+39,Raj  singh,3000
+40,Jeevan Gunjal,2000
+41,Deep Dama,3000
+42,Kalash Porwal,3000
+43,deepak dama,2000
+44,manoj mishra,2000
+45,Yuvraj Singh,5000
+46,Rishi Devadiga,5000
+47,Kailash Jain,3000
+48,Meet Dama,5000
+49,Sahil rastogi,3000
+50,Rounik singh,2000
+51,Anuj Doshi,10000
+52,Nikhil Waghela,10000
+53,mahesh gaddam,3000
+54,amit mistry,3000
