@@ -44,8 +44,8 @@ const ALL_PLAYERS = [
   {id:51,player_id:'P051',player_name:'Anuj Doshi'},{id:52,player_id:'P052',player_name:'Nikhil Waghela'},
   {id:53,player_id:'P053',player_name:'mahesh gaddam'},{id:54,player_id:'P054',player_name:'amit mistry'},
   {id:55,player_id:'P055',player_name:'Adi rane'},{id:56,player_id:'P056',player_name:'Pratyush prakash kadam'},
-  {id:53,player_id:'P057',player_name:'Vadant kabra'},{id:54,player_id:'P058',player_name:'aarush gupta'},
-  {id:53,player_id:'P059',player_name:'veer mehta'},{id:54,player_id:'P060',player_name:'arpit pandey'}
+  {id:57,player_id:'P057',player_name:'Vadant kabra'},{id:58,player_id:'P058',player_name:'aarush gupta'},
+  {id:59,player_id:'P059',player_name:'veer mehta'},{id:60,player_id:'P060',player_name:'arpit pandey'}
 
 ];
 
