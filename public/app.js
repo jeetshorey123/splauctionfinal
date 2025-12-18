@@ -42,7 +42,11 @@ const ALL_PLAYERS = [
   {id:47,player_id:'P047',player_name:'Kailash Jain'},{id:48,player_id:'P048',player_name:'Meet Dama'},
   {id:49,player_id:'P049',player_name:'Sahil rastogi'},{id:50,player_id:'P050',player_name:'Rounik singh'},
   {id:51,player_id:'P051',player_name:'Anuj Doshi'},{id:52,player_id:'P052',player_name:'Nikhil Waghela'},
-  {id:53,player_id:'P053',player_name:'mahesh gaddam'},{id:54,player_id:'P054',player_name:'amit mistry'}
+  {id:53,player_id:'P053',player_name:'mahesh gaddam'},{id:54,player_id:'P054',player_name:'amit mistry'},
+  {id:55,player_id:'P055',player_name:'Adi rane'},{id:56,player_id:'P056',player_name:'Pratyush prakash kadam'},
+  {id:53,player_id:'P057',player_name:'Vadant kabra'},{id:54,player_id:'P058',player_name:'aarush gupta'},
+  {id:53,player_id:'P059',player_name:'veer mehta'},{id:54,player_id:'P060',player_name:'arpit pandey'}
+
 ];
 
 let teamData={};
