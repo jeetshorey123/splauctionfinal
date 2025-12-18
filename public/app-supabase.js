@@ -12,12 +12,12 @@ let currentTournamentId = null;
 let teamData = {};
 
 const TEAMS = [
-  { id: 1, name: 'Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 10 },
-  { id: 2, name: 'Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 10 },
-  { id: 3, name: 'Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 10 },
-  { id: 4, name: 'Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 10 },
-  { id: 5, name: 'Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 10 },
-  { id: 6, name: 'Legends', logo: 'legend.jpg', purse: 100000, max_players: 10 }
+  { id: 1, name: 'Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 9 },
+  { id: 2, name: 'Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 9 },
+  { id: 3, name: 'Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 9 },
+  { id: 4, name: 'Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 9 },
+  { id: 5, name: 'Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 9 },
+  { id: 6, name: 'Legends', logo: 'legend.jpg', purse: 100000, max_players: 9 }
 ];
 
 // Supabase Functions
@@ -155,7 +155,7 @@ async function renderTeamsGrid() {
   TEAMS.forEach(t => {
     const ti = teamData[t.id] || { purse_left: t.purse, players_purchased: 0 };
     const playersPurchased = ti.players_purchased || 0;
-    const playersToPurchase = 10 - playersPurchased;
+    const playersToPurchase = t.max_players - playersPurchased;
     const c = document.createElement('div');
     c.className = 'team-card';
     c.onclick = () => showTeamDetails(t.id);
@@ -171,7 +171,7 @@ async function showTeamDetails(tid) {
   const players = await getPlayersForTournament(currentTournamentId);
   const pl = players.filter(p => p.team_id === tid && p.status === 'sold');
   const playersPurchased = ti.players_purchased || 0;
-  const playersToPurchase = 10 - playersPurchased;
+  const playersToPurchase = t.max_players - playersPurchased;
   document.getElementById('teamDetails').innerHTML = `<div class="team-details-container"><div class="team-header"><img src="${t.logo}" alt="${t.name}" class="team-logo"><h2>${t.name}</h2></div><div class="team-summary"><div class="summary-card"><div class="summary-label">Total Purse</div><div class="summary-value">₹${t.purse.toLocaleString()}</div></div><div class="summary-card"><div class="summary-label">Purse Left</div><div class="summary-value">₹${ti.purse_left.toLocaleString()}</div></div><div class="summary-card"><div class="summary-label">Players Purchased</div><div class="summary-value">${playersPurchased}</div></div><div class="summary-card"><div class="summary-label">Players to Purchase</div><div class="summary-value">${playersToPurchase}</div></div></div><div class="players-section"><h3>Players Roster</h3>${pl.length > 0 ? `<table class="players-table"><thead><tr><th>Player ID</th><th>Player Name</th><th>Price</th></tr></thead><tbody>${pl.map(p => `<tr><td>${p.player_id}</td><td>${p.player_name}</td><td>₹${p.price.toLocaleString()}</td></tr>`).join('')}</tbody></table>` : '<div class="empty-state"><p>No players purchased yet</p></div>'}</div></div>`;
   showPage('teamDetailsPage');
 }

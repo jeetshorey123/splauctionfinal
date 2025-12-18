@@ -21,7 +21,7 @@ A modern, mobile-responsive web application for managing cricket player auctions
 5. **Sankalp Mavericks** - Professional team logo
 6. **Sankalp Legends** - Professional team logo
 
-Each team starts with ₹100,000 purse and can purchase up to 11 players.
+Each team starts with ₹100,000 purse and can purchase up to 9 players.
 
 ## Setup Instructions
 
