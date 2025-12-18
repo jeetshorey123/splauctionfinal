@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     localStorage.setItem(STORAGE_KEY_TEAMS,JSON.stringify(t));
   }
   // Always sync player list with ALL_PLAYERS array
+  console.log('ALL_PLAYERS count:', ALL_PLAYERS.length);
   const existingPlayers = localStorage.getItem(STORAGE_KEY_PLAYERS);
   if(!existingPlayers){
     localStorage.setItem(STORAGE_KEY_PLAYERS,JSON.stringify(ALL_PLAYERS.map(p=>({...p,status:'available',team_id:null,price:0,tournament:null}))));
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       return existing ? {...p, status: existing.status, team_id: existing.team_id, price: existing.price, tournament: existing.tournament} : {...p, status: 'available', team_id: null, price: 0, tournament: null};
     });
     localStorage.setItem(STORAGE_KEY_PLAYERS, JSON.stringify(updated));
+    console.log('Players synced to localStorage:', updated.length);
   }
   teamData=JSON.parse(localStorage.getItem(STORAGE_KEY_TEAMS));
   loadTournamentSelect();
