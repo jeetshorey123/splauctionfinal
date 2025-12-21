@@ -635,8 +635,8 @@ window.removePlayerFromTeam = async function(playerId, teamId, price) {
     await upsertTeam(teamData[teamId]);
     
     alert('Player removed and returned to auction pool');
-    await showTeamManagement();
     await renderTeamsGrid();
+    await showTeamManagement();
   } catch (error) {
     alert('Error removing player: ' + error.message);
   }
