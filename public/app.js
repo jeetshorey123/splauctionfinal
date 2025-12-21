@@ -7,12 +7,12 @@ const STORAGE_KEY_CURRENT_TOURNAMENT = 'spl_current_tournament';
 let currentTournament = null;
 
 const TEAMS = [
-  { id: 1, name: 'Sankalp Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 9 },
-  { id: 2, name: 'Sankalp Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 9 },
-  { id: 3, name: 'Sankalp Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 9 },
-  { id: 4, name: 'Sankalp Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 9 },
-  { id: 5, name: 'Sankalp Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 9 },
-  { id: 6, name: 'Sankalp Legends', logo: 'legend.jpg', purse: 100000, max_players: 9 }
+  { id: 1, name: 'Sankalp Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 10 },
+  { id: 2, name: 'Sankalp Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 10 },
+  { id: 3, name: 'Sankalp Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 10 },
+  { id: 4, name: 'Sankalp Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 10 },
+  { id: 5, name: 'Sankalp Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 10 },
+  { id: 6, name: 'Sankalp Legends', logo: 'legend.jpg', purse: 100000, max_players: 10 }
 ];
 
 const ALL_PLAYERS = [
@@ -45,7 +45,8 @@ const ALL_PLAYERS = [
   {id:53,player_id:'P053',player_name:'mahesh gaddam'},{id:54,player_id:'P054',player_name:'amit mistry'},
   {id:55,player_id:'P055',player_name:'Adi rane'},{id:56,player_id:'P056',player_name:'Pratyush prakash kadam'},
   {id:57,player_id:'P057',player_name:'Vadant kabra'},{id:58,player_id:'P058',player_name:'aarush gupta'},
-  {id:59,player_id:'P059',player_name:'veer mehta'},{id:60,player_id:'P060',player_name:'arpit pandey'}
+  {id:59,player_id:'P059',player_name:'veer mehta'},{id:60,player_id:'P060',player_name:'arpit pandey'},
+  {id:61,player_id:'P061',player_name:'Player 61'},{id:62,player_id:'P062',player_name:'Player 62'}
 
 ];
 

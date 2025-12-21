@@ -12,12 +12,12 @@ let currentTournamentId = null;
 let teamData = {};
 
 const TEAMS = [
-  { id: 1, name: 'Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 9 },
-  { id: 2, name: 'Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 9 },
-  { id: 3, name: 'Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 9 },
-  { id: 4, name: 'Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 9 },
-  { id: 5, name: 'Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 9 },
-  { id: 6, name: 'Legends', logo: 'legend.jpg', purse: 100000, max_players: 9 }
+  { id: 1, name: 'Warriors', logo: 'warrior.jpg', purse: 100000, max_players: 10 },
+  { id: 2, name: 'Challengers', logo: 'fighters.jpeg', purse: 100000, max_players: 10 },
+  { id: 3, name: 'Valiant', logo: 'valiant.jpg', purse: 100000, max_players: 10 },
+  { id: 4, name: 'Strikers', logo: 'strikers.jpeg', purse: 100000, max_players: 10 },
+  { id: 5, name: 'Mavericks', logo: 'mavericks.jpg', purse: 100000, max_players: 10 },
+  { id: 6, name: 'Legends', logo: 'legend.jpg', purse: 100000, max_players: 10 }
 ];
 
 // Supabase Functions
@@ -188,9 +188,9 @@ async function showAdminPage() {
     const ts = document.getElementById('teamSelect');
     ps.innerHTML = '<option value="">Choose a player...</option>';
     
-    // Only show players that are truly available (not sold to any tournament) and IDs 1-54
+    // Only show players that are truly available (not sold to any tournament) and IDs 1-62
     const allPlayers = await getPlayers();
-    const availablePlayers = allPlayers.filter(p => p.status === 'available' && p.tournament_id === null && p.id >= 1 && p.id <= 54);
+    const availablePlayers = allPlayers.filter(p => p.status === 'available' && p.tournament_id === null && p.id >= 1 && p.id <= 62);
     availablePlayers.forEach(p => {
       const o = document.createElement('option');
       o.value = p.id;

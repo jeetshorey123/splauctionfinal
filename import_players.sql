@@ -55,4 +55,12 @@ INSERT INTO players (player_id, player_name, status) VALUES
   ('P051', 'Anuj Doshi', 'available'),
   ('P052', 'Nikhil Waghela', 'available'),
   ('P053', 'mahesh gaddam', 'available'),
-  ('P054', 'amit mistry', 'available');
+  ('P054', 'amit mistry', 'available'),
+  ('P055', 'Adi rane', 'available'),
+  ('P056', 'Pratyush prakash kadam', 'available'),
+  ('P057', 'Vadant kabra', 'available'),
+  ('P058', 'aarush gupta', 'available'),
+  ('P059', 'veer mehta', 'available'),
+  ('P060', 'arpit pandey', 'available'),
+  ('P061', 'Player 61', 'available'),
+  ('P062', 'Player 62', 'available');

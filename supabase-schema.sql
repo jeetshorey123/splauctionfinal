@@ -33,7 +33,7 @@ CREATE TABLE players (
   UNIQUE(player_id, tournament_id)
 );
 
--- Insert initial players data (54 confirmed players)
+-- Insert initial players data (62 confirmed players)
 INSERT INTO players (player_id, player_name, status, team_id, price, tournament_id) VALUES
 ('P001', 'Lakshank Furiya', 'available', NULL, 0, NULL),
 ('P002', 'Kaushik yamber', 'available', NULL, 0, NULL),
@@ -88,7 +88,15 @@ INSERT INTO players (player_id, player_name, status, team_id, price, tournament_
 ('P051', 'Anuj Doshi', 'available', NULL, 0, NULL),
 ('P052', 'Nikhil Waghela', 'available', NULL, 0, NULL),
 ('P053', 'mahesh gaddam', 'available', NULL, 0, NULL),
-('P054', 'amit mistry', 'available', NULL, 0, NULL);
+('P054', 'amit mistry', 'available', NULL, 0, NULL),
+('P055', 'Adi rane', 'available', NULL, 0, NULL),
+('P056', 'Pratyush prakash kadam', 'available', NULL, 0, NULL),
+('P057', 'Vadant kabra', 'available', NULL, 0, NULL),
+('P058', 'aarush gupta', 'available', NULL, 0, NULL),
+('P059', 'veer mehta', 'available', NULL, 0, NULL),
+('P060', 'arpit pandey', 'available', NULL, 0, NULL),
+('P061', 'Player 61', 'available', NULL, 0, NULL),
+('P062', 'Player 62', 'available', NULL, 0, NULL);
 
 -- Enable Row Level Security
 ALTER TABLE tournaments ENABLE ROW LEVEL SECURITY;
