@@ -594,7 +594,7 @@ main {
 
 @media (max-width: 768px) {
   .header h1 { font-size: 1.3rem; }
-  .app-logo { height: 50px; width: auto; }
+  .app-logo { height: 60px; width: auto; }
   .navbar { top: 78px; }
   .nav-btn { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
   .header-nav-btn { font-size: 0.8rem; padding: 0.3rem 0.8rem; margin-left: 0.4rem; letter-spacing: 0.5px; }
@@ -614,11 +614,11 @@ main {
 }
 
 @media (max-width: 480px) {
-  .logo-section { flex-direction: row; align-items: center; gap: 0.8rem; }
-  .app-logo { height: 55px; width: auto; }
-  .title-section { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
-  .header h1 { font-size: 1.1rem; margin: 0; }
-  .season-badge { font-size: 0.7rem; padding: 0.2rem 0.5rem; }
+  .logo-section { flex-direction: row; align-items: center; gap: 1rem; }
+  .app-logo { height: 75px; width: auto; margin: 0.5rem; }
+  .title-section { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  .header h1 { font-size: 1.2rem; margin: 0; }
+  .season-badge { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
   .nav-container { gap: 0.3rem; justify-content: center; flex-wrap: wrap; }
   .nav-btn { padding: 0.7rem 1.2rem; font-size: 0.8rem; letter-spacing: 0.5px; }
   .header-nav-btn { font-size: 0.7rem; padding: 0.25rem 0.7rem; margin-left: 0.3rem; margin-top: 0.3rem; letter-spacing: 0.5px; }
