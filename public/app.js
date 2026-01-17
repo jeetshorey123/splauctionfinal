@@ -80,22 +80,78 @@ const ALL_PLAYERS = [
   {id:68,player_id:'P068',player_name:'prakash kadam',base_price:0,team:'legends'}
 ];
 
+// Match Officials (3rd Umpires, Boundary Checkers, Match Officials, Scorers)
+const OFFICIALS = {
+  warriors: ['Jeevan', 'Meet', 'Nikhil Waghela'],
+  challengers: ['Omkar', 'Aryan', 'Anuj'],
+  valiants: ['Yuvraj', 'Mihir', 'Ashish uncle'],
+  strikers: ['Jatin', 'Veer', 'Ajay uncle'],
+  mavericks: ['Monty', 'Sahil', 'Rupesh uncle'],
+  legends: ['Ankur', 'Naveen uncle']
+};
+
+// Track official usage for balanced distribution
+const officialUsage = {};
+Object.keys(OFFICIALS).forEach(team => {
+  OFFICIALS[team].forEach(official => {
+    officialUsage[official] = 0;
+  });
+});
+
+// Function to get officials for a match (4 from teams not playing, balanced distribution)
+function getMatchOfficials(team1, team2, matchNumber) {
+  const allTeams = ['warriors', 'challengers', 'valiants', 'strikers', 'mavericks', 'legends'];
+  const availableTeams = allTeams.filter(t => t !== team1 && t !== team2);
+  
+  let candidateOfficials = [];
+  
+  // Get all officials from available teams
+  availableTeams.forEach(team => {
+    OFFICIALS[team].forEach(official => {
+      // Exclude Jatin from first 7 matches
+      if (matchNumber <= 7 && official === 'Jatin') {
+        return;
+      }
+      candidateOfficials.push(official);
+    });
+  });
+  
+  // Sort by usage count (least used first) for balanced distribution
+  candidateOfficials.sort((a, b) => officialUsage[a] - officialUsage[b]);
+  
+  // Pick top 4
+  const selectedOfficials = candidateOfficials.slice(0, 4);
+  
+  // Update usage count
+  selectedOfficials.forEach(official => {
+    officialUsage[official]++;
+  });
+  
+  return selectedOfficials.join(', ');
+}
+
 const SCHEDULE = [
-  { match: 1, team1: 'mavericks', team2: 'valiants', date: '25 Jan 2026', time: '11:00 AM' },
-  { match: 2, team1: 'legends', team2: 'warriors', date: '25 Jan 2026', time: '11:45 AM' },
-  { match: 3, team1: 'challengers', team2: 'mavericks', date: '25 Jan 2026', time: '12:30 PM' },
-  { match: 4, team1: 'valiants', team2: 'legends', date: '25 Jan 2026', time: '1:15 PM' },
-  { match: 5, team1: 'warriors', team2: 'challengers', date: '25 Jan 2026', time: '2:00 PM' },
-  { match: 6, team1: 'mavericks', team2: 'legends', date: '25 Jan 2026', time: '2:45 PM' },
-  { match: 7, team1: 'strikers', team2: 'valiants', date: '25 Jan 2026', time: '3:30 PM' },
-  { match: 8, team1: 'warriors', team2: 'mavericks', date: '25 Jan 2026', time: '4:15 PM' },
-  { match: 9, team1: 'strikers', team2: 'legends', date: '25 Jan 2026', time: '5:00 PM' },
-  { match: 10, team1: 'challengers', team2: 'valiants', date: '25 Jan 2026', time: '5:45 PM' },
-  { match: 11, team1: 'strikers', team2: 'warriors', date: '25 Jan 2026', time: '6:30 PM' },
-  { match: 12, team1: 'legends', team2: 'challengers', date: '25 Jan 2026', time: '7:15 PM' },
-  { match: 13, team1: 'strikers', team2: 'mavericks', date: '25 Jan 2026', time: '8:00 PM' },
-  { match: 14, team1: 'valiants', team2: 'warriors', date: '25 Jan 2026', time: '8:45 PM' },
-  { match: 15, team1: 'strikers', team2: 'challengers', date: '25 Jan 2026', time: '9:30 PM' }
+  { match: 1, team1: 'mavericks', team2: 'valiants', date: '25 Jan 2026', time: '10:30 AM' },
+  { match: 2, team1: 'legends', team2: 'warriors', date: '25 Jan 2026', time: '11:15 AM' },
+  { match: 3, team1: 'challengers', team2: 'mavericks', date: '25 Jan 2026', time: '12:00 PM' },
+  { match: 4, team1: 'valiants', team2: 'legends', date: '25 Jan 2026', time: '12:45 PM' },
+  { match: 5, team1: 'warriors', team2: 'challengers', date: '25 Jan 2026', time: '1:30 PM' },
+  { match: 6, team1: 'mavericks', team2: 'legends', date: '25 Jan 2026', time: '2:15 PM' },
+  { match: 7, team1: 'strikers', team2: 'valiants', date: '25 Jan 2026', time: '3:00 PM' },
+  { match: 8, team1: 'warriors', team2: 'mavericks', date: '25 Jan 2026', time: '3:45 PM' },
+  { match: 9, team1: 'strikers', team2: 'legends', date: '25 Jan 2026', time: '4:30 PM' },
+  { match: 10, team1: 'challengers', team2: 'valiants', date: '25 Jan 2026', time: '5:15 PM' },
+  { match: 11, team1: 'strikers', team2: 'warriors', date: '25 Jan 2026', time: '6:00 PM' },
+  { match: 12, team1: 'legends', team2: 'challengers', date: '25 Jan 2026', time: '6:45 PM' },
+  { match: 13, team1: 'strikers', team2: 'mavericks', date: '25 Jan 2026', time: '7:30 PM' },
+  { match: 14, team1: 'valiants', team2: 'warriors', date: '25 Jan 2026', time: '8:15 PM' },
+  { match: 15, team1: 'strikers', team2: 'challengers', date: '25 Jan 2026', time: '9:00 PM' },
+  { match: 'kids', team1: 'kids', team2: 'kids', date: '26 Jan 2026', time: '11:00 AM', description: '👶 Kids Match' },
+  { match: 16, team1: 'challengers', team2: 'valiants', date: '26 Jan 2026', time: '1:00 PM', description: '#2 vs #3' },
+  { match: 17, team1: 'strikers', team2: 'mavericks', date: '26 Jan 2026', time: '2:00 PM', description: '#4 vs #5' },
+  { match: 18, team1: 'loser_16', team2: 'winner_17', date: '26 Jan 2026', time: '3:00 PM', description: 'Loser of #16 vs Winner of #17' },
+  { match: 19, team1: 'winner_16', team2: 'winner_18', date: '26 Jan 2026', time: '4:00 PM', description: 'Winner of #16 vs Winner of #18' },
+  { match: 20, team1: 'warriors', team2: 'winner_19', date: '26 Jan 2026', time: '5:00 PM', description: '#1 vs Winner of #19' }
 ];
 
 // Initialize app on page load
@@ -188,12 +244,35 @@ function renderSchedule() {
             <th colspan="3">Teams</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Match Officials</th>
           </tr>
         </thead>
         <tbody>
           ${SCHEDULE.map(match => {
+            // Handle playoff/kids matches with descriptions (TBD officials)
+            if (match.description) {
+              return `
+              <tr>
+                <td><span class="match-number">#${match.match}</span></td>
+                <td colspan="3" class="playoff-match-cell">
+                  <span class="playoff-description">${match.description}</span>
+                </td>
+                <td><span class="match-date">${match.date}</span></td>
+                <td><span class="match-time">${match.time}</span></td>
+                <td><span class="match-officials">TBD</span></td>
+              </tr>
+              `;
+            }
+            
             const team1Info = getTeamInfo(match.team1);
             const team2Info = getTeamInfo(match.team2);
+            
+            // Skip if team info not found
+            if (!team1Info || !team2Info) return '';
+            
+            // Get officials for this match (pass match number for logic)
+            const officials = getMatchOfficials(match.team1, match.team2, match.match);
+            
             return `
             <tr>
               <td><span class="match-number">#${match.match}</span></td>
@@ -208,6 +287,7 @@ function renderSchedule() {
               </td>
               <td><span class="match-date">${match.date}</span></td>
               <td><span class="match-time">${match.time}</span></td>
+              <td><span class="match-officials">${officials}</span></td>
             </tr>
             `;
           }).join('')}
@@ -236,4 +316,157 @@ function setupEventListeners() {
   document.getElementById('backToHome').addEventListener('click', () => showPage('homePage'));
   document.getElementById('navHome').addEventListener('click', () => showPage('homePage'));
   document.getElementById('navSchedule').addEventListener('click', () => showPage('schedulePage'));
+  document.getElementById('downloadScheduleBtn').addEventListener('click', downloadScheduleAsImage);
+}
+
+// Download schedule as image
+async function downloadScheduleAsImage() {
+  const btn = document.getElementById('downloadScheduleBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Generating Image...';
+  
+  try {
+    // Create a container with full styling
+    const container = document.createElement('div');
+    container.style.cssText = `
+      background: linear-gradient(135deg, #0f3460, #16213e);
+      padding: 40px;
+      width: 1400px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: #fff;
+    `;
+    
+    // Add title
+    const title = document.createElement('h1');
+    title.textContent = 'Tournament Schedule';
+    title.style.cssText = `
+      text-align: center;
+      font-size: 32px;
+      margin: 0 0 30px 0;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      font-weight: 700;
+    `;
+    container.appendChild(title);
+    
+    // Add inauguration ceremony
+    const inaug = document.createElement('div');
+    inaug.style.cssText = `
+      background: linear-gradient(135deg, #e85d75, #c23855);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    `;
+    inaug.innerHTML = `
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600;">🏏 Inauguration Ceremony</h3>
+      <p style="margin: 0; font-size: 15px; font-weight: 500;">25th January 2026 | 10:00 AM - 10:30 AM</p>
+    `;
+    container.appendChild(inaug);
+    
+    // Add kids match
+    const kids = document.createElement('div');
+    kids.style.cssText = `
+      background: linear-gradient(135deg, #e85d75, #c23855);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    `;
+    kids.innerHTML = `
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600;">👶 Kids Match</h3>
+      <p style="margin: 0; font-size: 15px; font-weight: 500;">26th January 2026 | 11:00 AM</p>
+    `;
+    container.appendChild(kids);
+    
+    // Clone and style the schedule table
+    const tableContainer = document.getElementById('scheduleContent');
+    const clonedTable = tableContainer.cloneNode(true);
+    
+    // Style the cloned table with page colors
+    const tables = clonedTable.querySelectorAll('table');
+    tables.forEach(table => {
+      table.style.cssText = `
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0;
+        background: rgba(26, 26, 46, 0.7);
+        border-radius: 8px;
+        overflow: hidden;
+      `;
+      
+      // Style headers
+      const headers = table.querySelectorAll('thead th');
+      headers.forEach(th => {
+        th.style.cssText = `
+          background: linear-gradient(135deg, #c23855, #a01d45);
+          color: white;
+          padding: 14px;
+          text-align: center;
+          font-weight: 700;
+          border: 1px solid #e85d75;
+          font-size: 13px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        `;
+      });
+      
+      // Style rows
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach((row, index) => {
+        row.style.cssText = `
+          background: ${index % 2 === 0 ? 'rgba(26, 26, 46, 0.5)' : 'rgba(26, 26, 46, 0.3)'};
+          border-bottom: 1px solid rgba(232, 93, 117, 0.2);
+        `;
+        
+        const cells = row.querySelectorAll('td');
+        cells.forEach(td => {
+          td.style.cssText = `
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(232, 93, 117, 0.15);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+          `;
+        });
+      });
+    });
+    
+    container.appendChild(clonedTable);
+    
+    // Temporarily add to body (off-screen)
+    container.style.position = 'absolute';
+    container.style.left = '-9999px';
+    container.style.top = '0';
+    document.body.appendChild(container);
+    
+    // Generate canvas from HTML
+    const canvas = await html2canvas(container, {
+      backgroundColor: 'rgba(15, 52, 96, 1)',
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false
+    });
+    
+    // Remove temporary container
+    document.body.removeChild(container);
+    
+    // Download as image
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = `SPL-Schedule-${new Date().toISOString().split('T')[0]}.png`;
+    link.click();
+    
+    btn.disabled = false;
+    btn.textContent = '📥 Download Schedule as Image';
+  } catch (error) {
+    console.error('Error generating image:', error);
+    alert('Error generating image. Please try again.');
+    btn.disabled = false;
+    btn.textContent = '📥 Download Schedule as Image';
+  }
 }

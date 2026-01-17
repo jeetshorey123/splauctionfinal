@@ -50,10 +50,15 @@
       <!-- Schedule Page -->
       <div id="schedulePage" class="page">
         <h2 class="page-title">Tournament Schedule</h2>
+        <button id="downloadScheduleBtn" class="download-btn">📥 Download Schedule as Image</button>
         <div class="schedule-info">
           <div class="event-banner">
             <h3>🏏 Inauguration Ceremony</h3>
-            <p>25th January 2026 | 10:00 AM - 11:00 AM</p>
+            <p>25th January 2026 | 10:00 AM - 10:30 AM</p>
+          </div>
+          <div class="event-banner">
+            <h3>👶 Kids Match</h3>
+            <p>26th January 2026 | 11:00 AM</p>
           </div>
         </div>
         <div id="scheduleContent"></div>
@@ -61,6 +66,7 @@
     </main>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
