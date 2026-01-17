@@ -308,6 +308,10 @@ function showPage(pageName) {
     document.getElementById('navHome').classList.add('active');
   } else if (pageName === 'schedulePage') {
     document.getElementById('navSchedule').classList.add('active');
+  } else if (pageName === 'scoringPage') {
+    document.getElementById('navScoring').classList.add('active');
+  } else if (pageName === 'rulesPage') {
+    document.getElementById('navRules').classList.add('active');
   }
 }
 
@@ -316,7 +320,273 @@ function setupEventListeners() {
   document.getElementById('backToHome').addEventListener('click', () => showPage('homePage'));
   document.getElementById('navHome').addEventListener('click', () => showPage('homePage'));
   document.getElementById('navSchedule').addEventListener('click', () => showPage('schedulePage'));
+  document.getElementById('navScoring').addEventListener('click', () => {
+    showPage('scoringPage');
+    initializeScoringPage();
+  });
+  document.getElementById('navRules').addEventListener('click', () => showPage('rulesPage'));
   document.getElementById('downloadScheduleBtn').addEventListener('click', downloadScheduleAsImage);
+}
+
+// Initialize Scoring Page
+function initializeScoringPage() {
+  generateScorecards();
+  setupScoringListeners();
+}
+
+function generateScorecards() {
+  generateScorecard('team1');
+  generateScorecard('team2');
+}
+
+function generateScorecard(teamId) {
+  const container = document.getElementById(teamId + 'Scorecard');
+  container.innerHTML = '';
+  
+  let html = '<table class="over-table"><thead><tr><th>Over</th>';
+  
+  // Header for 12 balls - BLANK headers
+  for (let ball = 1; ball <= 12; ball++) {
+    html += `<th></th>`;
+  }
+  
+  html += '<th>Over Total</th><th>2x</th></tr></thead><tbody>';
+  
+  // 6 Overs
+  for (let over = 1; over <= 6; over++) {
+    html += `<tr><td>Over ${over}</td>`;
+    
+    // 12 Balls input fields
+    for (let ball = 1; ball <= 12; ball++) {
+      const inputId = `${teamId}_over${over}_ball${ball}`;
+      html += `<td><input type="number" class="ball-input" id="${inputId}" min="0" max="6" value="0" data-over="${over}" data-ball="${ball}" data-team="${teamId}"></td>`;
+    }
+    
+    // Over total
+    const overTotalId = `${teamId}_over${over}_total`;
+    html += `<td><input type="number" class="over-total" id="${overTotalId}" readonly value="0"></td>`;
+    
+    // 2x runs (doubles) - ONLY for Over 2
+    const doublesId = `${teamId}_over${over}_2x`;
+    if (over === 2) {
+      html += `<td><input type="number" class="doubles" id="${doublesId}" value="0"></td>`;
+    } else {
+      html += `<td></td>`;
+    }
+    
+    html += '</tr>';
+  }
+  
+  // Add Total Runs row
+  html += `<tr class="total-runs-row"><td colspan="12" style="text-align: right; font-weight: bold; padding-right: 12px;">Total Runs</td>`;
+  html += `<td><input type="number" class="total-runs-input" id="${teamId}_totalRuns" readonly value="0"></td>`;
+  html += `<td></td></tr>`;
+  
+  html += '</tbody></table>';
+  
+  container.innerHTML = html;
+  
+  // Add event listeners for ball inputs
+  const ballInputs = container.querySelectorAll('.ball-input');
+  ballInputs.forEach(input => {
+    input.addEventListener('change', () => updateScorecardTotals(teamId));
+  });
+}
+
+function updateScorecardTotals(teamId) {
+  let inningsTotal = 0;
+  
+  for (let over = 1; over <= 6; over++) {
+    let overTotal = 0;
+    
+    for (let ball = 1; ball <= 12; ball++) {
+      const input = document.getElementById(`${teamId}_over${over}_ball${ball}`);
+      if (input) {
+        overTotal += parseInt(input.value) || 0;
+      }
+    }
+    
+    const overTotalInput = document.getElementById(`${teamId}_over${over}_total`);
+    if (overTotalInput) {
+      overTotalInput.value = overTotal;
+    }
+    
+    inningsTotal += overTotal;
+  }
+  
+  // Update total runs in table
+  const totalRunsTableInput = document.getElementById(teamId + '_totalRuns');
+  if (totalRunsTableInput) {
+    totalRunsTableInput.value = inningsTotal;
+  }
+  
+  // Update runs scored
+  const runsInput = document.getElementById(teamId + 'RunsScored');
+  if (runsInput) {
+    runsInput.value = inningsTotal;
+  }
+  
+  // Calculate total runs (runs scored + penalty)
+  const penaltyInput = document.getElementById(teamId + 'Penalty');
+  const totalRunsInput = document.getElementById(teamId + 'TotalRuns');
+  if (penaltyInput && totalRunsInput) {
+    const penalty = parseInt(penaltyInput.value) || 0;
+    totalRunsInput.value = inningsTotal + penalty;
+  }
+}
+
+function setupScoringListeners() {
+  // Add penalty change listeners for both teams
+  document.getElementById('team1Penalty').addEventListener('change', () => {
+    updateScorecardTotals('team1');
+  });
+  
+  document.getElementById('team2Penalty').addEventListener('change', () => {
+    updateScorecardTotals('team2');
+  });
+  
+  // Add download scoring button listener
+  const downloadScoringBtn = document.getElementById('downloadScoringBtn');
+  if (downloadScoringBtn) {
+    downloadScoringBtn.addEventListener('click', downloadScoringAsImage);
+  }
+}
+
+function downloadScoringAsImage() {
+  const scoringContainer = document.querySelector('.scoring-container');
+  
+  if (!scoringContainer) {
+    alert('Scoring page not found!');
+    return;
+  }
+  
+  const clone = scoringContainer.cloneNode(true);
+  clone.style.width = '2400px';
+  clone.style.padding = '60px';
+  clone.style.background = 'white';
+  clone.style.color = 'black';
+  
+  // Add SPL Logo at the top
+  const logoContainer = document.createElement('div');
+  logoContainer.style.cssText = `
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000;
+  `;
+  
+  const logo = document.createElement('img');
+  logo.src = './spl-logo.png';
+  logo.style.cssText = `
+    height: 80px;
+    margin-bottom: 10px;
+  `;
+  logoContainer.appendChild(logo);
+  
+  const title = document.createElement('h1');
+  title.textContent = 'SPL - MATCH SCORING SHEET';
+  title.style.cssText = `
+    margin: 0;
+    font-size: 28px;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+  `;
+  logoContainer.appendChild(title);
+  
+  // Insert logo at the beginning
+  clone.insertBefore(logoContainer, clone.firstChild);
+  
+  // Clear all input values
+  const allInputs = clone.querySelectorAll('input');
+  allInputs.forEach(input => {
+    input.value = '';
+  });
+  
+  // Pure white and black styling for download - NO COLORS
+  const tables = clone.querySelectorAll('table');
+  tables.forEach(table => {
+    table.style.borderCollapse = 'collapse';
+    table.style.width = '100%';
+    table.style.marginBottom = '20px';
+    table.style.backgroundColor = 'white';
+    table.style.borderColor = '#000';
+    table.style.border = '2px solid #000';
+    
+    const cells = table.querySelectorAll('th, td');
+    cells.forEach(cell => {
+      cell.style.border = '1px solid #000';
+      cell.style.padding = '12px';
+      cell.style.textAlign = 'center';
+      cell.style.backgroundColor = 'white';
+      cell.style.color = 'black';
+    });
+    
+    const headers = table.querySelectorAll('thead th');
+    headers.forEach(header => {
+      header.style.backgroundColor = 'white';
+      header.style.fontWeight = 'bold';
+      header.style.color = 'black';
+      header.style.border = '2px solid #000';
+    });
+    
+    const inputs = table.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.style.border = 'none';
+      input.style.padding = '8px';
+      input.style.backgroundColor = 'transparent';
+      input.style.color = 'black';
+      input.style.outline = 'none';
+    });
+  });
+  
+  // Style all sections to pure white with black borders
+  const sections = clone.querySelectorAll('.match-info, .teams-info, .player-swaps-section, .team-scorecard, .innings-total, .match-result');
+  sections.forEach(section => {
+    section.style.backgroundColor = 'white';
+    section.style.border = '1px solid #000';
+    section.style.color = 'black';
+    section.style.borderRadius = '0';
+  });
+  
+  // Remove all gradients and backgrounds
+  const allElements = clone.querySelectorAll('*');
+  allElements.forEach(el => {
+    el.style.color = 'black';
+    el.style.backgroundColor = 'white';
+    el.style.backgroundImage = 'none';
+    el.style.textShadow = 'none';
+    el.style.boxShadow = 'none';
+    el.style.borderColor = '#000';
+  });
+  
+  // Style labels and text
+  const labels = clone.querySelectorAll('label, span, h3, h2, h1');
+  labels.forEach(label => {
+    label.style.color = 'black';
+    label.style.backgroundColor = 'transparent';
+  });
+  
+  // Temporarily add to DOM for html2canvas
+  document.body.appendChild(clone);
+  
+  html2canvas(clone, {
+    scale: 4,
+    backgroundColor: '#ffffff',
+    logging: false,
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement('a');
+    const timestamp = new Date().toISOString().slice(0, 10);
+    link.href = canvas.toDataURL('image/png');
+    link.download = `scoring-sheet-${timestamp}.png`;
+    link.click();
+    document.body.removeChild(clone);
+  }).catch(err => {
+    console.error('Error generating image:', err);
+    document.body.removeChild(clone);
+    alert('Error downloading image. Please try again.');
+  });
 }
 
 // Download schedule as image

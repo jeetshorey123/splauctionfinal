@@ -20,6 +20,8 @@
             <span class="season-badge">Season 2</span>
             <button id="navHome" class="header-nav-btn active">Teams</button>
             <button id="navSchedule" class="header-nav-btn">Schedule</button>
+            <button id="navScoring" class="header-nav-btn">Scoring</button>
+            <button id="navRules" class="header-nav-btn">Rules</button>
           </div>
         </div>
       </div>
@@ -62,6 +64,362 @@
           </div>
         </div>
         <div id="scheduleContent"></div>
+      </div>
+
+      <!-- Scoring Page -->
+      <div id="scoringPage" class="page">
+        <h2 class="page-title">Match Scoring</h2>
+        <div class="scoring-container">
+          <div class="scoring-section">
+            <div class="match-info">
+              <label>Match #: <input type="number" id="matchNumber" min="1"></label>
+            </div>
+            <div class="teams-info">
+              <label>Team 1: <input type="text" id="team1"></label>
+              <span class="vs-text">VS</span>
+              <label>Team 2: <input type="text" id="team2"></label>
+            </div>
+
+            <!-- Player Swap Checkboxes -->
+            <div class="player-swaps-section">
+              <div class="player-swap-row">
+                <span class="swap-label">Team:</span>
+                <input type="text" class="swap-field" id="team1SwapTeam">
+                <label class="swap-checkbox">
+                  <input type="checkbox" id="team1Swap">
+                </label>
+                <span class="swap-label">In:</span>
+                <input type="text" class="swap-field" id="team1SwapIn">
+                <span class="swap-label">Out:</span>
+                <input type="text" class="swap-field" id="team1SwapOut">
+              </div>
+              <div class="player-swap-row">
+                <span class="swap-label">Team:</span>
+                <input type="text" class="swap-field" id="team2SwapTeam">
+                <label class="swap-checkbox">
+                  <input type="checkbox" id="team2Swap">
+                </label>
+                <span class="swap-label">In:</span>
+                <input type="text" class="swap-field" id="team2SwapIn">
+                <span class="swap-label">Out:</span>
+                <input type="text" class="swap-field" id="team2SwapOut">
+              </div>
+            </div>
+            
+            <!-- Team 1 Scoring -->
+            <div class="team-scorecard">
+              <div class="team-header">
+                <div class="team-title-row">
+                  <h3 id="team1Name">bat first</h3>
+                  <input type="text" class="team-scorecard-name" id="team1ScoreTeamName">
+                </div>
+              </div>
+              <div id="team1Scorecard" class="scorecard"></div>
+              <div class="innings-total">
+                <div class="innings-row">
+                  <span class="innings-label">Runs Scored:</span>
+                  <input type="number" class="innings-input" id="team1RunsScored" value="0" readonly>
+                </div>
+                <div class="innings-row">
+                  <span class="innings-label">Penalty:</span>
+                  <input type="number" class="innings-input" id="team1Penalty" value="0">
+                </div>
+                <div class="innings-row">
+                  <span class="innings-label">Total Runs:</span>
+                  <input type="number" class="innings-input" id="team1TotalRuns" value="0" readonly>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team 2 Scoring -->
+            <div class="team-scorecard">
+              <div class="team-header">
+                <div class="team-title-row">
+                  <h3 id="team2Name">bat 2nd</h3>
+                  <input type="text" class="team-scorecard-name" id="team2ScoreTeamName">
+                </div>
+              </div>
+              <div id="team2Scorecard" class="scorecard"></div>
+              <div class="innings-total">
+                <div class="innings-row">
+                  <span class="innings-label">Runs Scored:</span>
+                  <input type="number" class="innings-input" id="team2RunsScored" value="0" readonly>
+                </div>
+                <div class="innings-row">
+                  <span class="innings-label">Penalty:</span>
+                  <input type="number" class="innings-input" id="team2Penalty" value="0">
+                </div>
+                <div class="innings-row">
+                  <span class="innings-label">Total Runs:</span>
+                  <input type="number" class="innings-input" id="team2TotalRuns" value="0" readonly>
+                </div>
+              </div>
+            </div>
+
+            <!-- Match Result -->
+            <div class="match-result">
+              <div class="match-result-field">
+                <label>Team Won:</label>
+                <input type="text" id="teamWon">
+              </div>
+              <div class="match-result-field">
+                <label>Won By:</label>
+                <input type="text" id="wonBy">
+              </div>
+            </div>
+
+            <!-- Download Button -->
+            <button id="downloadScoringBtn" class="download-btn" style="width: 100%; margin-top: 20px;">📥 Download</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules Page -->
+      <div id="rulesPage" class="page">
+        <h2 class="page-title">Match Rules</h2>
+        <div class="rules-container">
+          <div class="rules-content">
+            <h3>Match Rules (Applicable to ALL Matches)</h3>
+            <ol>
+              <li>No mini overs are allowed under any circumstances.</li>
+              <li>No over can be declared incomplete once one or more legal deliveries have been bowled.</li>
+              <li>The umpire's decision is final in all match situations.</li>
+              <li>Only the team captain is allowed to speak with the umpire or committee.</li>
+              <li>Only the captain may appeal; no other player is permitted to do so.</li>
+            </ol>
+
+            <h3>2. Match Format</h3>
+            <h4>2.1 League Matches</h4>
+            <ul>
+              <li>Each match will be 5 overs per side.</li>
+              <li>Each bowler is allowed to bowl only 1 over.</li>
+            </ul>
+            <h4>2.2 Playoff Matches</h4>
+            <ul>
+              <li>Each match will be 6 overs per side.</li>
+              <li>Only one bowler per team is allowed to bowl a maximum of 2 overs.</li>
+            </ul>
+
+            <h3>3. Bowling Rules</h3>
+            <h4>3.1 Bowling Action & Position</h4>
+            <ol>
+              <li>The bowler must deliver the ball from within the bowling crease.</li>
+              <li>The bowler's foot must not touch or cross any crease line, no ball if it does.</li>
+              <li>Even if the shoe is not touching the line but is ahead of it, it will be considered a No Ball.</li>
+              <li>Bowler hits the stump while bowling is a no ball.</li>
+              <li>1 check allowed per over, 2nd check is a no ball.</li>
+              <li>The bowler must inform the umpire of the side from which they are bowling.</li>
+              <li>Side-arm bowling above waist height is not allowed – direct No Ball (no warning).</li>
+              <li>Bowling above the prescribed speed limit is a direct No Ball, same limit for all batsmen.</li>
+            </ol>
+
+            <h4>3.2 No-Ball Rules</h4>
+            <p>A delivery will be called a No Ball if:</p>
+            <ol>
+              <li>The ball pitches in the first half of the pitch, i.e., behind the white mid-line (Line touch is also a No Ball).</li>
+              <li>A full toss above knee height (inside the crease).</li>
+              <li>Bowler hits the stump while bowling is a no ball.</li>
+              <li>1 check allowed per over, 2nd check is a no ball.</li>
+              <li>Side-arm bowling above waist height is not allowed – direct No Ball (no warning).</li>
+              <li>Bowling above the prescribed speed limit is a direct No Ball, same limit for all batsmen.</li>
+              <li>The ball pitches twice outside the batting crease.</li>
+              <li>The keeper collects the ball ahead of the stumps.</li>
+              <li>More than the permitted number of fielders are positioned behind the stumps.</li>
+              <li>The ball passes above stump height and the batsman misses the ball, OR the ball passes outside the pitch area.</li>
+              <li>If the ball passes at stump height from the side, it is NOT a No Ball unless the ball goes outside the pitch without touching the keeper.</li>
+            </ol>
+
+            <h4>3.3 Batsman Advancing / Leaving the Crease</h4>
+            <ul>
+              <li>If the batsman leaves the crease or advances forward:
+                <ul>
+                  <li>If the ball hits the bat or the body, it is a FAIR DELIVERY, regardless of height.</li>
+                  <li>If the batsman misses the ball and the ball passes above stump height, it is a No Ball.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4>3.4 Dead Ball & High Ball Rule</h4>
+            <ol>
+              <li>A ball bowled above head height is a Dead Ball.</li>
+              <li>If the same bowler bowls above head height again, the second instance is a No Ball.</li>
+            </ol>
+
+            <h3>4. Batting Rules</h3>
+            <ol>
+              <li>Tap and run is allowed anywhere in front of the stumps.</li>
+              <li>Intentional double-tap by the batsman is OUT (Double Hit).</li>
+              <li>On a No Ball: Run out is valid, Stumping is NOT OUT.</li>
+              <li>A batsman will be declared OUT on a No Ball if the ball is hit above the box restriction (The ball does not count, 1 run is awarded to the batting team).</li>
+              <li>Shots played behind the stumps are treated as dot Ball, unless the ball spins back from in front of the stumps.</li>
+            </ol>
+
+            <h3>5. Fielding Rules</h3>
+            <h4>5.1 Fielding Restrictions</h4>
+            <ol>
+              <li>Only 4 fielders are allowed behind the stumps on the boundary.</li>
+              <li>If extra fielders are present behind the stumps → No Ball.</li>
+              <li>90-degree fielding is allowed.</li>
+              <li>Fake fielding is OUT (umpire's decision).</li>
+              <li>Obstructing the field is OUT (umpire's decision).</li>
+            </ol>
+
+            <h4>5.2 Substitute & Injury Rules</h4>
+            <ol>
+              <li>An extra fielder is allowed only if a player is injured.</li>
+              <li>Rotation point will be granted only if injury occurs during the match.</li>
+              <li>Protection guards are allowed but must not stop the ball or give advantage.</li>
+            </ol>
+
+            <h3>6. Boundary & Playing Area Rules</h3>
+            <h4>6.1 Boundary Definition</h4>
+            <ol>
+              <li>The white line is the official boundary.</li>
+              <li>Curtain on square boundary and nets act as boundary indicators.</li>
+            </ol>
+
+            <h4>6.2 Boundary Outcomes</h4>
+            <ul>
+              <li><strong>Straight Boundary:</strong>
+                <ul>
+                  <li>Ball touching the ribbon → 6 runs</li>
+                  <li>Ball above the ribbon → OUT</li>
+                </ul>
+              </li>
+              <li><strong>Square Boundary:</strong>
+                <ul>
+                  <li>Ball touching the curtain directly → OUT</li>
+                </ul>
+              </li>
+            </ul>
+            <p><em>Final contact decides the result, regardless of initial height. (boundary umpire decision is final)</em></p>
+
+            <h4>6.3 Box Restriction</h4>
+            <ol>
+              <li>The second white strip on square boundary is the box restriction line.</li>
+              <li>Any ball hit on or above this line is OUT.</li>
+            </ol>
+
+            <h4>6.4 Special Ball Situations</h4>
+            <ol>
+              <li>Ball hits net behind keeper → Play continues.</li>
+              <li>Ball tears net and passes through → 1D+</li>
+              <li>Ball stuck inside grill → 1D</li>
+              <li>Ball hits grill and comes back → Play continues.</li>
+              <li>Ball going outside playing area:
+                <ul>
+                  <li>Directly above chairs/tables → Dot Ball</li>
+                  <li>Hits a tap → 1D</li>
+                  <li>Touches tables → 1D</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h3>7. Runs, Overthrows & Dismissals</h3>
+            <ol>
+              <li>Overthrow runs are valid.</li>
+              <li>Bails must fall at striker's end.</li>
+              <li>If stump is moved or touched, it must be removed before judging run-out.</li>
+              <li>Shuffle wide: Wide is given if the ball does not hit bat or stumps, irrespective of batsman stance.</li>
+            </ol>
+
+            <h3>8. Challenge Over Rule</h3>
+            <ol>
+              <li>The 2nd over of every match is a Challenge Over.</li>
+              <li>5 fielders are allowed on the boundary.</li>
+              <li>Batting team target: 16 runs.
+                <ul>
+                  <li>If achieved → Runs × 2</li>
+                  <li>If not → Runs ÷ 2 (rounded off)</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h3>9. Youngster / Impact Player Rule</h3>
+            <ol>
+              <li>Each team will have one Impact Player (youngest player).</li>
+              <li>Runs scored by the Impact Player are multiplied by 2.</li>
+            </ol>
+            <p><strong>Declared Impact Players:</strong></p>
+            <ul>
+              <li>Valiant – Rounik Singh</li>
+              <li>Challengers – Adi Rane</li>
+              <li>Legends – Jay Patel</li>
+              <li>Maverick – Vedant Kabra</li>
+              <li>Warriors – Krishang</li>
+              <li>Strikers – Aarush Gupta</li>
+            </ul>
+
+            <h3>10. Team Composition & Attendance</h3>
+            <ol>
+              <li>Maximum 10 players per team.</li>
+              <li>10 players must be present on the field.</li>
+              <li>If any player does not show up: 1-point swap bonus will not be awarded.</li>
+              <li>If informed one day prior, captain may choose an extra player.</li>
+              <li>Deadline: 12:00 PM, 24th January.</li>
+              <li>All players must report by 10:00 AM, 25th January.</li>
+            </ol>
+
+            <h3>11. Points System</h3>
+            <h4>11.1 Match Points</h4>
+            <ul>
+              <li>Win → 2 points</li>
+              <li>Loss → 0 points</li>
+            </ul>
+            <h4>11.2 Bonus Points</h4>
+            <ul>
+              <li>Win with changed playing 10 → 3 points</li>
+              <li>Loss with changed playing 10 → 1 point</li>
+              <li>Captain must inform committee & scorer at toss.</li>
+            </ul>
+            <h4>11.3 Penalty</h4>
+            <ul>
+              <li>5-run penalty per league match for: Valiant, Strikers, Legends</li>
+            </ul>
+
+            <h3>12. Tournament Format</h3>
+            <h4>12.1 League Stage</h4>
+            <ul>
+              <li>Each team plays at least once against every other team.</li>
+              <li>Top 5 teams qualify based on Points & NRR.</li>
+            </ul>
+            <h4>12.2 Playoffs</h4>
+            <ul>
+              <li>1st ranked team qualifies directly to Final.</li>
+              <li>Next 4 teams play round-robin.</li>
+              <li>Last-ranked playoff team is eliminated.</li>
+            </ul>
+
+            <h3>13. Super Over Rules</h3>
+            <ol>
+              <li>No Super Over in league matches → 1 point each.</li>
+              <li>In playoffs:
+                <ul>
+                  <li>Super Over played</li>
+                  <li>If tied → Team with most boundaries wins</li>
+                  <li>If tied again → Another Super Over (No same batter or bowler allowed)</li>
+                  <li>If still tied → Toss decides winner</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h3>14. Discipline & Ground Conduct</h3>
+            <ol>
+              <li>No player allowed to:
+                <ul>
+                  <li>Sit in front of nets</li>
+                  <li>Sit on boundary sitting stands</li>
+                  <li>Cross the rope as a viewer</li>
+                </ul>
+              </li>
+              <li>Players must sit only in allocated team seats.</li>
+              <li>Only captains & committee members allowed on field for discussions.</li>
+              <li>One player must be assigned next to the scorer.</li>
+              <li>Keeper change to leg umpire must be informed or it is a No Ball.</li>
+              <li>Tracks and team jerseys are compulsory (Exception allowed for extra player).</li>
+            </ol>
+          </div>
+        </div>
       </div>
     </main>
   </div>
