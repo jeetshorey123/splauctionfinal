@@ -364,7 +364,7 @@ async function downloadScheduleAsImage() {
     `;
     inaug.innerHTML = `
       <h3 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 700;">🏏 Inauguration Ceremony</h3>
-      <p style="margin: 0; font-size: 18px; font-weight: 500; letter-spacing: 0.5px;">25th January 2026 | 10:00 AM - 10:30 AM</p>
+      <p style="margin: 0; font-size: 18px; font-weight: 500; letter-spacing: 0.5px;">25th January 2026 | 9:30 AM - 10:30 AM</p>
     `;
     container.appendChild(inaug);
     
