@@ -323,17 +323,18 @@ function setupEventListeners() {
 async function downloadScheduleAsImage() {
   const btn = document.getElementById('downloadScheduleBtn');
   btn.disabled = true;
-  btn.textContent = '⏳ Generating Image...';
+  btn.textContent = '⏳ Generating High Quality Image...';
   
   try {
-    // Create a container with full styling
+    // Create a container with full styling - larger for better quality
     const container = document.createElement('div');
     container.style.cssText = `
       background: linear-gradient(135deg, #0f3460, #16213e);
-      padding: 40px;
-      width: 1400px;
+      padding: 60px;
+      width: 1800px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       color: #fff;
+      box-sizing: border-box;
     `;
     
     // Add title
@@ -341,11 +342,12 @@ async function downloadScheduleAsImage() {
     title.textContent = 'Tournament Schedule';
     title.style.cssText = `
       text-align: center;
-      font-size: 32px;
-      margin: 0 0 30px 0;
+      font-size: 44px;
+      margin: 0 0 40px 0;
       color: #fff;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       font-weight: 700;
+      letter-spacing: 1px;
     `;
     container.appendChild(title);
     
@@ -353,16 +355,16 @@ async function downloadScheduleAsImage() {
     const inaug = document.createElement('div');
     inaug.style.cssText = `
       background: linear-gradient(135deg, #e85d75, #c23855);
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 15px;
+      padding: 28px;
+      border-radius: 16px;
+      margin-bottom: 20px;
       color: white;
       text-align: center;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     `;
     inaug.innerHTML = `
-      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600;">🏏 Inauguration Ceremony</h3>
-      <p style="margin: 0; font-size: 15px; font-weight: 500;">25th January 2026 | 10:00 AM - 10:30 AM</p>
+      <h3 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 700;">🏏 Inauguration Ceremony</h3>
+      <p style="margin: 0; font-size: 18px; font-weight: 500; letter-spacing: 0.5px;">25th January 2026 | 10:00 AM - 10:30 AM</p>
     `;
     container.appendChild(inaug);
     
@@ -370,16 +372,16 @@ async function downloadScheduleAsImage() {
     const kids = document.createElement('div');
     kids.style.cssText = `
       background: linear-gradient(135deg, #e85d75, #c23855);
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 30px;
+      padding: 28px;
+      border-radius: 16px;
+      margin-bottom: 40px;
       color: white;
       text-align: center;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     `;
     kids.innerHTML = `
-      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600;">👶 Kids Match</h3>
-      <p style="margin: 0; font-size: 15px; font-weight: 500;">26th January 2026 | 11:00 AM</p>
+      <h3 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 700;">👶 Kids Match</h3>
+      <p style="margin: 0; font-size: 18px; font-weight: 500; letter-spacing: 0.5px;">26th January 2026 | 11:00 AM</p>
     `;
     container.appendChild(kids);
     
@@ -395,8 +397,9 @@ async function downloadScheduleAsImage() {
         border-collapse: collapse;
         margin-top: 0;
         background: rgba(26, 26, 46, 0.7);
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
       `;
       
       // Style headers
@@ -405,12 +408,13 @@ async function downloadScheduleAsImage() {
         th.style.cssText = `
           background: linear-gradient(135deg, #c23855, #a01d45);
           color: white;
-          padding: 14px;
+          padding: 18px;
           text-align: center;
           font-weight: 700;
           border: 1px solid #e85d75;
-          font-size: 13px;
+          font-size: 15px;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          letter-spacing: 0.5px;
         `;
       });
       
@@ -425,11 +429,13 @@ async function downloadScheduleAsImage() {
         const cells = row.querySelectorAll('td');
         cells.forEach(td => {
           td.style.cssText = `
-            padding: 12px;
+            padding: 16px;
             text-align: center;
             border: 1px solid rgba(232, 93, 117, 0.15);
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            line-height: 1.4;
           `;
         });
       });
@@ -443,22 +449,25 @@ async function downloadScheduleAsImage() {
     container.style.top = '0';
     document.body.appendChild(container);
     
-    // Generate canvas from HTML
+    // Generate canvas from HTML with highest quality settings
     const canvas = await html2canvas(container, {
       backgroundColor: 'rgba(15, 52, 96, 1)',
-      scale: 2,
+      scale: 3,
       useCORS: true,
       allowTaint: true,
-      logging: false
+      logging: false,
+      windowHeight: container.scrollHeight,
+      windowWidth: container.scrollWidth,
+      quality: 1
     });
     
     // Remove temporary container
     document.body.removeChild(container);
     
-    // Download as image
+    // Download as image with higher quality PNG
     const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png');
-    link.download = `SPL-Schedule-${new Date().toISOString().split('T')[0]}.png`;
+    link.href = canvas.toDataURL('image/png', 1.0);
+    link.download = `SPL-Tournament-Schedule-${new Date().toISOString().split('T')[0]}.png`;
     link.click();
     
     btn.disabled = false;
