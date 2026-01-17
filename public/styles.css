@@ -594,7 +594,7 @@ main {
 
 @media (max-width: 768px) {
   .header h1 { font-size: 1.3rem; }
-  .app-logo { height: 45px; }
+  .app-logo { height: 50px; width: auto; }
   .navbar { top: 78px; }
   .nav-btn { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
   .header-nav-btn { font-size: 0.8rem; padding: 0.3rem 0.8rem; margin-left: 0.4rem; letter-spacing: 0.5px; }
@@ -607,14 +607,18 @@ main {
   .players-table th, .players-table td { padding: 0.75rem 0.5rem; }
   .schedule-table { font-size: 0.85rem; }
   .schedule-table th, .schedule-table td { padding: 0.8rem 0.5rem; }
-  .team-logo-schedule { width: 6px; height: 6px; }
+  .team-logo-schedule { width: 8px; height: 8px; }
   .team-cell { flex-direction: column; gap: 0.4rem; }
   .event-banner h3 { font-size: 1.5rem; }
   .event-banner p { font-size: 1rem; }
 }
 
 @media (max-width: 480px) {
-  .logo-section, .title-section { flex-direction: column; gap: 0.5rem; }
+  .logo-section { flex-direction: row; align-items: center; gap: 0.8rem; }
+  .app-logo { height: 55px; width: auto; }
+  .title-section { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+  .header h1 { font-size: 1.1rem; margin: 0; }
+  .season-badge { font-size: 0.7rem; padding: 0.2rem 0.5rem; }
   .nav-container { gap: 0.3rem; justify-content: center; flex-wrap: wrap; }
   .nav-btn { padding: 0.7rem 1.2rem; font-size: 0.8rem; letter-spacing: 0.5px; }
   .header-nav-btn { font-size: 0.7rem; padding: 0.25rem 0.7rem; margin-left: 0.3rem; margin-top: 0.3rem; letter-spacing: 0.5px; }
@@ -626,11 +630,12 @@ main {
   .schedule-table { display: block; overflow-x: auto; font-size: 0.75rem; }
   .schedule-table th, .schedule-table td { padding: 0.6rem 0.3rem; }
   .match-number { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
-  .team-name-schedule { font-size: 0.85rem; }
-  .team-logo-schedule { width: 5px; height: 5px; }
+  .team-name-schedule { font-size: 0.75rem; }
+  .team-logo-schedule { width: 8px; height: 8px; }
   .vs-badge { font-size: 0.85rem; padding: 0.3rem 0.6rem; }
   .match-date { font-size: 0.75rem; }
-  .match-time { font-size: 0.85rem; }
+  .match-time { font-size: 0.75rem; }
+  .match-officials { font-size: 0.7rem; }
   .event-banner { padding: 1.5rem; }
   .event-banner h3 { font-size: 1.3rem; }
 }
